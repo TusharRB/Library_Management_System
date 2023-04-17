@@ -2,6 +2,7 @@ package com.example.Library_management_system.controller;
 
 import com.example.Library_management_system.DTO.RequestDto.StudentRequestDto;
 import com.example.Library_management_system.DTO.RequestDto.UpdateStudentMobRequestDto;
+import com.example.Library_management_system.DTO.ResponseDto.AllStudentResponseDto;
 import com.example.Library_management_system.DTO.ResponseDto.StudentResponseDto;
 import com.example.Library_management_system.DTO.ResponseDto.UpdateStudentMobNoResponseDto;
 import com.example.Library_management_system.entity.Student;
@@ -35,14 +36,14 @@ public class StudentController {
         return studentService.deleteById(id);
     }
 
-    @GetMapping("/get_student_byid")
+    @GetMapping("/get_student_by_id")
     public StudentResponseDto getStudentById(@RequestParam("id") int id){
 
         return studentService.getStudentById(id);
     }
 
     @GetMapping("/find_all_student")
-    public List<Student> findAllStudent(){
+    public List<AllStudentResponseDto> findAllStudent(){
         return studentService.findAllStudent();
     }
 

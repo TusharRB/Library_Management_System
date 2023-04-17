@@ -2,6 +2,7 @@ package com.example.Library_management_system.service.impl;
 
 import com.example.Library_management_system.DTO.RequestDto.StudentRequestDto;
 import com.example.Library_management_system.DTO.RequestDto.UpdateStudentMobRequestDto;
+import com.example.Library_management_system.DTO.ResponseDto.AllStudentResponseDto;
 import com.example.Library_management_system.DTO.ResponseDto.StudentResponseDto;
 import com.example.Library_management_system.DTO.ResponseDto.UpdateStudentMobNoResponseDto;
 import com.example.Library_management_system.entity.Card;
@@ -13,6 +14,7 @@ import com.example.Library_management_system.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.lang.String;
 
@@ -88,9 +90,30 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Student> findAllStudent() {
+    public List<AllStudentResponseDto> findAllStudent() {
 
-        return studentRepository.findAll();
+
+        List<Student> studentList = studentRepository.findAll();
+       List<AllStudentResponseDto> students = new ArrayList<>();
+
+
+
+        for(Student student : studentList){
+
+
+            AllStudentResponseDto allStudentResponseDto = new AllStudentResponseDto();
+            allStudentResponseDto.setId(student.getId());
+            allStudentResponseDto.setName(student.getName());
+            allStudentResponseDto.setAge(student.getAge());
+            allStudentResponseDto.setDepartment(student.getDepartment());
+            allStudentResponseDto.setMobNo(student.getMobNo());
+            students.add(allStudentResponseDto);
+        }
+
+        return students;
+
+
+
     }
 
     @Override

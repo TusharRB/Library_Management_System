@@ -7,6 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity // Make Table in Db
 @Table(name="book") // change table name in db
 @NoArgsConstructor // Default Constructor
@@ -23,6 +26,7 @@ public class Book {
     private String title;
     private int numberOfPages;
     private int price;
+    private boolean isIssued;
 
     @Enumerated(EnumType.STRING) // Sql understand this is enum data type
     private Genre genre;
@@ -30,6 +34,13 @@ public class Book {
     @ManyToOne
     @JoinColumn
     Author author;
+
+    @ManyToOne
+    @JoinColumn
+    Card card;
+
+    @OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
+    List<Transaction> transactionList = new ArrayList<>();
 
 
 }
