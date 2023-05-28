@@ -23,8 +23,9 @@ public class BookServiceImpl implements BookService {
             throw new Exception("Author not present");
         }
 
-        author.getBooks().add(book);
-        book.setAuthor(author);
+        author.getBooks().add(book); // book add to the list
+
+        book.setAuthor(author); // set book to the particular author
 
         authorRepository.save(author);
         return "Book added";
