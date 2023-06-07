@@ -92,6 +92,8 @@ public class AuthorServiceImpl implements AuthorService {
             Author author = authorRepository.findById(authorRequestDto.getId()).get();
 
             author.setName(authorRequestDto.getName());
+            author.setAge(authorRequestDto.getAge());
+            author.setEmail(authorRequestDto.getEmail());
 
             authorRepository.save(author);
 
